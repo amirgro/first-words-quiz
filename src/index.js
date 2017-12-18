@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import Milim from "./milim";
+import Quiz from "./quiz";
 
 const styles = {
   fontFamily: "sans-serif",
@@ -11,7 +11,7 @@ const styles = {
 
 const App = () => (
   <div style={styles}>
-    <Milim name="CodeSandbox" />
+    <Quiz name="CodeSandbox" />
   </div>
 );
 
