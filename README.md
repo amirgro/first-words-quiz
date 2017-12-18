@@ -10,7 +10,7 @@ For easy usage use https://codesandbox.io/s/github/amirgro/first-words-quiz/tree
 ## Usage
 
 Just let your child identify the diffrent images. 
-The current version supportes hebrew only.
+The current version supports hebrew only.
 
 ## Contributing
 
