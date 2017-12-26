@@ -16,7 +16,7 @@ class Quiz extends React.Component {
       play: null,
       img: data[selected].img,
       nameToSay: data[selected].name,
-      listening: true
+      showMic: false
     };
   }
 
@@ -43,6 +43,8 @@ class Quiz extends React.Component {
       };
       annyang.addCommands(commands)
       annyang.setLanguage("he")
+      annyang.addCallback('soundstart', () => this.setState({showMic: true}))
+      annyang.addCallback('result', () => this.setState({ showMic: false }))
       annyang.start()
       // for test:
       // setInterval(() => annyang.trigger('דהדה'), 2000)
@@ -53,6 +55,12 @@ class Quiz extends React.Component {
 
   render() {
     const { play, img, listening } = this.state
+    const micStyle = {
+      width: '45px',
+      height: '45px',
+      padding: '5px',
+      display: this.state.showMic ? 'block' : 'none'
+    }
 
     const audioSrc = play === 'success' ? "http://www.pacdv.com/sounds/people_sound_effects/applause-4.mp3" : "http://www.orangefreesounds.com/wp-content/uploads/2014/08/Wrong-answer-sound-effect.mp3"
     const audioComponent = <audio controls autoPlay style={{ display: "none" }}>
@@ -62,7 +70,9 @@ class Quiz extends React.Component {
       <div>
         {play ? audioComponent : null}
         <div><img src={img} alt="pic" width="200" height="200" /></div>
-        {listening ? <img alt="mic" width="170" height="170" src={'https://lh4.ggpht.com/pzAgoUBDDetHSQpPp29Z0wkMQNyBvQIXXpNSnO5_yS8IJFs2dIVUaGEqOJDPYW1I9vE=w300'} /> : null}
+        <div>
+          <img alt="mic" style={micStyle} src={'https://media.giphy.com/media/AheiBsf6UlLqw/source.gif'} />
+        </div>
       </div>
     );
   }
